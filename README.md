@@ -2,14 +2,14 @@
 
 import cv2 as cv  # OpenCV 라이브러리 불러오기
 
-# 웹캠을 열고 비디오 캡처
+- 웹캠을 열고 비디오 캡처
 cap = cv.VideoCapture(0, cv.CAP_DSHOW)
 
-# 비디오 저장을 위한 코덱 및 파일 설정
+- 비디오 저장을 위한 코덱 및 파일 설정
 fourcc = cv.VideoWriter_fourcc(*'XVID')  # XVID 코덱 설정
 out = cv.VideoWriter('recorded_video.avi', fourcc, 30.0, (640, 480))  # 녹화 파일 설정 (FPS: 30, 해상도: 640x480)
 
-# 녹화 상태 및 좌우 반전 상태 초기화
+- 녹화 상태 및 좌우 반전 상태 초기화
 is_recording = False  # 녹화 여부
 is_flipped = False  # 좌우 반전 여부
 
@@ -35,7 +35,7 @@ while True:
     elif key == ord('f'):  # 'F' 키를 누르면 좌우 반전 토글 (ON/OFF)
         is_flipped = not is_flipped  
 
-# 자원 해제 및 프로그램 종료
+- 자원 해제 및 프로그램 종료
 cap.release()
 out.release()
 cv.destroyAllWindows()
