@@ -47,37 +47,38 @@ python main.py
 
 ## 📄 **코드 설명**
 ```python
-import cv2 as cv
+import cv2 as cv # OpenCV 라이브러리 불러오기
 
-cap = cv.VideoCapture(0, cv.CAP_DSHOW)
-fourcc = cv.VideoWriter_fourcc(*'XVID')
-out = cv.VideoWriter('recorded_video.avi', fourcc, 30.0, (640, 480))
+cap = cv.VideoCapture(0, cv.CAP_DSHOW) 웹캠을 열고 비디오 캡처
+fourcc = cv.VideoWriter_fourcc(*'XVID') # XVID 코덱 설정
+out = cv.VideoWriter('recorded_video.avi', fourcc, 30.0, (640, 480)) # 녹화 파일 설정 (FPS: 30, 해상도: 640x480)
 
-is_recording = False
-is_flipped = False  
+is_recording = False # 녹화 여부
+is_flipped = False   # 좌우 반전 여부
 
 while True:
-    ret, frame = cap.read()
+    ret, frame = cap.read() # 프레임을 가져오기
     if not ret:
-        break
+        break # 프레임을 가져올 수 없으면 종료
 
     if is_flipped:
-        frame = cv.flip(frame, 1)  
+        frame = cv.flip(frame, 1)  # 좌우 반전 적용
 
     if is_recording:
-        out.write(frame)
-        cv.circle(frame, (30, 30), 10, (0, 0, 255), -1)
+        out.write(frame) # 녹화 중이면 프레임 저장
+        cv.circle(frame, (30, 30), 10, (0, 0, 255), -1) # 녹화 중임을 나타내는 빨간색 원 표시
 
-    cv.imshow('Video Recorder', frame)
+    cv.imshow('Video Recorder', frame) # 현재 프레임을 화면에 표시
 
-    key = cv.waitKey(1) & 0xFF
-    if key == 27:
+    key = cv.waitKey(1) & 0xFF # 키 입력 감지
+    if key == 27: # ESC 키를 누르면 종료
         break
-    elif key == 32:
+    elif key == 32: # Space 키를 누르면 녹화 상태 토글 (ON/OFF)
         is_recording = not is_recording
-    elif key == ord('f'):
-        is_flipped = not is_flipped  
+    elif key == ord('f'):  # 'F' 키를 누르면 좌우 반전 토글 (ON/OFF)
+        is_flipped = not is_flipped
 
+# 자원 해제 및 프로그램 종료
 cap.release()
 out.release()
 cv.destroyAllWindows()
