@@ -83,3 +83,12 @@ cap.release()
 out.release()
 cv.destroyAllWindows()
 ```
+
+---
+
+
+https://github.com/user-attachments/assets/3584b33b-114f-484a-bcf2-c474bdf227d2
+
+
+
+
