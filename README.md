@@ -85,7 +85,7 @@ cv.destroyAllWindows()
 ```
 
 ---
-## Images
+## Record mode
 ![image](https://github.com/user-attachments/assets/659a5399-62db-4abd-ad66-180cb316ead0)
 
 # Flip
